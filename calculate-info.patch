@@ -1,0 +1,26 @@
+diff --git a/activity/activity.info b/activity/activity.info
+index cc53226..22d7a76 100644
+--- a/activity/activity.info
++++ b/activity/activity.info
+@@ -1,12 +1,18 @@
+ [Activity]
+ name = Calculate
+-bundle_id = org.laptop.Calculate
++bundle_id = org.sugarlabs.Calculate
++release_date = 2007-07-15
+ icon = calculate
+ exec = sugar-activity3 calculate.Calculate -s
+ activity_version = 47
+ license = GPLv2+
++metadata_license = CC0-1.0
+ max_participants = 10
+-summary = This is the place to get the answer to a quick problem, but that is not the limit! You can also explore Algebra, Trigonometry, Boolean and more!
+ repository = https://github.com/sugarlabs/sugarlabs-calculate
+ url = https://help.sugarlabs.org/calculate.html
+-tags = Maths
++tags = Education
++update_contact = tch@sugarlabs.org
++developer_name = Sugar Labs Community
++summary = An infix-notation graphing calculator
++description = The Calculate Activity is an infix-notation graphing calculator. Type an expression or select components from the toolbars, and press Return to evaluate it. This is the place to get the answer to a quick problem, but that is not the limit! You can also explore Algebra, Trigonometry, Boolean and more!
++screenshots = https://help.sugarlabs.org/_images/Activity-Calculate.png

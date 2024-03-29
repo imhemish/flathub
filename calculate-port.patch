@@ -1,0 +1,70 @@
+diff --git a/layout.py b/layout.py
+index 95a8561..0b6903d 100644
+--- a/layout.py
++++ b/layout.py
+@@ -37,7 +37,7 @@ from numerals import local as _n
+ 
+ try:
+     from sugar3.graphics.toolbarbox import ToolbarButton, ToolbarBox
+-    from sugar3.activity.widgets import ActivityToolbarButton
++    from sugarapp.widgets import ExtendedActivityToolbarButton
+     from sugar3.activity.widgets import StopButton
+ except ImportError:
+     pass
+@@ -138,7 +138,7 @@ class CalcLayout:
+ 
+ # Toolbar
+         self._toolbar_box = ToolbarBox()
+-        activity_button = ActivityToolbarButton(self._parent)
++        activity_button = ExtendedActivityToolbarButton(self._parent)
+         self._toolbar_box.toolbar.insert(activity_button, 0)
+ 
+         def append(icon_name, label, page, position):
+diff --git a/shareable_activity.py b/shareable_activity.py
+index 46d02b2..fdfb5c8 100644
+--- a/shareable_activity.py
++++ b/shareable_activity.py
+@@ -5,14 +5,14 @@ gi.require_version('TelepathyGLib', '0.12')
+ from gi.repository import GObject
+ from gi.repository import TelepathyGLib
+ 
+-from sugar3.activity import activity
++from sugarapp.widgets import SugarCompatibleActivity
+ from sugar3.presence import presenceservice
+ from sugar3.presence.sugartubeconn import SugarTubeConnection
+ 
+ import logging
+ _logger = logging.getLogger('ShareableActivity')
+ 
+-IFACE = 'org.laptop.ShareableActivity'
++IFACE = 'org.sugarlabs.ShareableActivity'
+ 
+ 
+ class ShareableObject(dbus.service.Object):
+@@ -29,7 +29,7 @@ class ShareableObject(dbus.service.Object):
+         pass
+ 
+ 
+-class ShareableActivity(activity.Activity):
++class ShareableActivity(SugarCompatibleActivity):
+ 
+     '''
+     A shareable activity.
+@@ -47,7 +47,7 @@ class ShareableActivity(activity.Activity):
+             service_path
+         '''
+ 
+-        activity.Activity.__init__(self, handle, *args, **kwargs)
++        SugarCompatibleActivity.__init__(self, handle, *args, **kwargs)
+ 
+         self._sync_hid = None
+         self._message_cbs = {}
+@@ -97,7 +97,7 @@ class ShareableActivity(activity.Activity):
+         bundle_id = self.get_bundle_id()
+         last = bundle_id.split('.')[-1]
+         instance_id = self.get_id()
+-        return '/org/laptop/ShareableActivity/%s/%s' % (last, instance_id)
++        return '/org/sugarlabs/ShareableActivity/%s/%s' % (last, instance_id)
+ 
+     def _connect_to_ps(self):
+         '''
